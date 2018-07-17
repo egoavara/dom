@@ -2,8 +2,26 @@ package svg11
 
 import (
 	"encoding/xml"
-	"github.com/dom/svg11/presentation"
+	"github.com/iamGreedy/dom/svg11/presentation"
 )
+
+type Element interface {
+	Parent() Element
+	Childrun() []Element
+
+	createElement(name xml.Name) Element
+}
+
+type commonTree struct {
+	parent Element
+	childrun []Element
+}
+func (s *commonTree) Parent() Element {
+	return s.parent
+}
+func (s *commonTree) Childrun() []Element {
+	return s.childrun
+}
 
 type Core struct {
 	ID    string `xml:"id,attr"`
@@ -36,7 +54,10 @@ type GraphicalEvent struct {
 	OnMouseOut  string `xml:"onmouseout,attr"`
 	OnLoad      string `xml:"onload,attr"`
 }
-type Presentation map[presentation.Key]string
+type Presentation map[presentation.Key]interface{}
+
+
+
 func (s *Presentation) xmlAttrs(attrs ...xml.Attr) (err error) {
 	if *s == nil {
 		*s = make(Presentation)
@@ -173,3 +194,89 @@ func (s *Presentation) xmlAttr(attr xml.Attr) error {
 	return nil
 }
 
+func createAnimatable(name xml.Name) Element {
+	switch name.Local {
+	case "animate":
+		return nil
+	case "animateColor":
+		//TODO
+		return nil
+	case "animateMotion":
+		//TODO
+		return nil
+	case "animateTransform":
+		//TODO
+		return nil
+	case "set":
+		//TODO
+		return nil
+	}
+	return nil
+}
+func createDescriptive(name xml.Name) Element {
+	switch name.Local {
+	case "desc":
+		return new(ElemDesc)
+	case "metadata":
+		//TODO
+		return nil
+	case "title":
+		return new(ElemTitle)
+	}
+	return nil
+}
+func createShape(name xml.Name) Element {
+	switch name.Local {
+	case "circle":
+		return new(ElemCircle)
+	case "ellipse":
+		return new(ElemEllipse)
+	case "line":
+		return new(ElemLine)
+	case "path":
+		return new(ElemPath)
+	case "polygon":
+		return new(ElemPolygon)
+	case "polyline":
+		return new(ElemPolyline)
+	case "rect":
+		return new(ElemRect)
+	}
+	return nil
+}
+func createStructural(name xml.Name) Element {
+	switch name.Local {
+	case "defs":
+		return new(ElemDefine)
+	case "g":
+		return new(ElemGroup)
+	case "svg":
+		return new(ElemSVG)
+	case "symbol":
+		// TODO
+		return nil
+	case "use":
+		// TODO
+		return nil
+	}
+	return nil
+}
+func createGradient(name xml.Name) Element {
+	switch name.Local {
+	case "linearGradient":
+		// TODO
+		return nil
+	case "radialGradient":
+		// TODO
+		return nil
+	}
+	return nil
+}
+func create(name xml.Name, fns ... func(name xml.Name) Element) Element {
+	for _, fn := range fns {
+		if e := fn(name); e != nil{
+			return e
+		}
+	}
+	return nil
+}

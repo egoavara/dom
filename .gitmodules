@@ -1,3 +1,6 @@
 [submodule "example/Go-gopher-Vector"]
 	path = example/Go-gopher-Vector
 	url = https://github.com/keygx/Go-gopher-Vector
+[submodule "example/XPath-Next"]
+	path = example/XPath-Next
+	url = https://github.com/XPath-Next/XPath-Next

@@ -2,17 +2,16 @@ package svg11
 
 import (
 	"encoding/xml"
-	"github.com/pkg/errors"
-	"strings"
 	"fmt"
 	"strconv"
+	"strings"
+	"github.com/pkg/errors"
 )
 
 type LengthValue struct {
 	Value float32
-	Unit LengthUnit
+	Unit  LengthUnit
 }
-
 
 type LengthUnit uint8
 
@@ -39,13 +38,13 @@ func (s *LengthValue) parse(temp string) error {
 	temp = strings.TrimSpace(temp)
 	temp = strings.ToLower(temp)
 	//
-	for i := len(temp)-1; i >= 0; i--{
+	for i := len(temp) - 1; i >= 0; i-- {
 		code := temp[i]
-		if !('a' < code && code < 'z'){
-			if i != len(temp)-1{
-				unit = string(temp[i + 1:])
+		if !('a' < code && code < 'z') {
+			if i != len(temp)-1 {
+				unit = string(temp[i+1:])
 			}
-			temp = string(temp[:i + 1])
+			temp = string(temp[:i+1])
 			break
 		}
 	}
@@ -65,7 +64,7 @@ func (s *LengthValue) parse(temp string) error {
 		s.Value = float32(f32)
 		s.Unit = LengthUnitInch
 	default:
-		return errors.New("Invalid Unit Type '"+ unit +"'")
+		return errors.New("Invalid Unit Type '" + unit + "'")
 	}
 	//
 	return nil

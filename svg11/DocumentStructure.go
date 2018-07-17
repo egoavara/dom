@@ -10,6 +10,6 @@ type (
 		Referrer string
 		Domain   string
 		URL      url.URL
-		Root Element
+		Root     Element
 	}
 )
