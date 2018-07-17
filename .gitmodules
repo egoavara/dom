@@ -1,0 +1,3 @@
+[submodule "example/Go-gopher-Vector"]
+	path = example/Go-gopher-Vector
+	url = https://github.com/keygx/Go-gopher-Vector
