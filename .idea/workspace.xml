@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b37cf80-2e62-4df8-9285-3f595f26f9e3" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/example/XPath-Next" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/svg11/DataType.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/svg11/TagBasicShapes.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/svg11/TagPath.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/svg11/presentation/display.go" />
-      <change beforePath="$PROJECT_DIR$/.gitmodules" afterPath="$PROJECT_DIR$/.gitmodules" />
-      <change beforePath="$PROJECT_DIR$/svg11/DocumentStructure.go" afterPath="$PROJECT_DIR$/svg11/DocumentStructure.go" />
-      <change beforePath="$PROJECT_DIR$/svg11/Length.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/svg11/Parser_test.go" afterPath="$PROJECT_DIR$/svg11/Parser_test.go" />
-      <change beforePath="$PROJECT_DIR$/svg11/Tags.go" afterPath="$PROJECT_DIR$/svg11/TagStruct.go" />
-      <change beforePath="$PROJECT_DIR$/svg11/TagsBase.go" afterPath="$PROJECT_DIR$/svg11/Tag.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/grammer/EBNF.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/grammer/EBNF_test.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/grammer/Expression.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/grammer/Grammer.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/grammer/Grammer_test.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/grammer/Token.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/xpath/compiler/StreamIO.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/xpath/compiler/Tokens.go" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,24 +21,107 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Parser_test.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/svg11/Parser_test.go">
+      <file leaf-file-name="Grammer_test.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grammer/Grammer_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="30" column="48" lean-forward="true" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
+            <state relative-caret-position="38">
+              <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="52" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EBNF_test.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grammer/EBNF_test.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Grammer.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grammer/Grammer.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="33" column="68" lean-forward="false" selection-start-line="33" selection-start-column="68" selection-end-line="33" selection-end-column="68" />
               <folding>
-                <element signature="e#15#70#0" expanded="true" />
+                <element signature="e#86#124#0" expanded="false" />
+                <element signature="e#155#194#0" expanded="false" />
+                <element signature="n#!!block;n#Build#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="value.go" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Go/src/reflect/value.go">
+      <file leaf-file-name="EBNF.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grammer/EBNF.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="650">
-              <caret line="1690" column="24" lean-forward="false" selection-start-line="1690" selection-start-column="24" selection-end-line="1690" selection-end-column="24" />
-              <folding />
+            <state relative-caret-position="152">
+              <caret line="13" column="9" lean-forward="false" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+              <folding>
+                <element signature="e#168#193#0" expanded="false" />
+                <element signature="n#!!block;n#NewEBNFEncoder#0" expanded="false" />
+                <element signature="e#259#276#0" expanded="false" />
+                <element signature="n#!!block;n#toExpression#0" expanded="false" />
+                <element signature="e#490#526#0" expanded="false" />
+                <element signature="e#528#613#0" expanded="false" />
+                <element signature="e#615#658#0" expanded="false" />
+                <element signature="e#660#821#0" expanded="false" />
+                <element signature="e#721#768#0" expanded="false" />
+                <element signature="e#823#985#0" expanded="false" />
+                <element signature="e#883#932#0" expanded="false" />
+                <element signature="e#987#1046#0" expanded="false" />
+                <element signature="e#1048#1104#0" expanded="false" />
+                <element signature="n#!!block;n#Encode#0" expanded="false" />
+                <element signature="e#1208#1328#0" expanded="false" />
+                <element signature="e#1306#1325#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Expression.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/grammer/Expression.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="566">
+              <caret line="97" column="5" lean-forward="true" selection-start-line="97" selection-start-column="5" selection-end-line="97" selection-end-column="5" />
+              <folding>
+                <element signature="e#73#205#0" expanded="false" />
+                <element signature="e#223#329#0" expanded="false" />
+                <element signature="e#406#431#0" expanded="false" />
+                <element signature="e#479#513#0" expanded="false" />
+                <element signature="e#552#590#0" expanded="false" />
+                <element signature="e#640#706#0" expanded="false" />
+                <element signature="e#763#805#0" expanded="false" />
+                <element signature="e#847#889#0" expanded="false" />
+                <element signature="e#929#966#0" expanded="false" />
+                <element signature="e#1004#1041#0" expanded="false" />
+                <element signature="n#!!block;n#NewExpressionRegexp#0" expanded="false" />
+                <element signature="e#1477#1499#0" expanded="false" />
+                <element signature="e#1525#1596#0" expanded="false" />
+                <element signature="n#!!block;n#MustExpressionRegexp#0" expanded="false" />
+                <element signature="e#1734#1751#0" expanded="false" />
+                <element signature="n#!!block;n#NewExpressionCanbe#0" expanded="false" />
+                <element signature="n#!!block;n#GetName#0" expanded="false" />
+                <element signature="n#!!block;n#GrammerParsing#0" expanded="false" />
+                <element signature="e#2540#2695#0" expanded="false" />
+                <element signature="n#!!block;n#GrammerParsing#1" expanded="false" />
+                <element signature="e#2925#3033#0" expanded="false" />
+                <element signature="n#!!block;n#GrammerParsing#2" expanded="false" />
+                <element signature="e#3254#3333#0" expanded="false" />
+                <element signature="n#!!block;n#GrammerParsing#3" expanded="false" />
+                <element signature="e#3636#3732#0" expanded="false" />
+                <element signature="e#3705#3729#0" expanded="false" />
+                <element signature="n#!!block;n#GrammerParsing#4" expanded="false" />
+                <element signature="e#3959#4098#0" expanded="false" />
+                <element signature="e#4026#4095#0" expanded="false" />
+                <element signature="e#4114#4209#0" expanded="false" />
+                <element signature="n#!!block;n#GrammerParsing#5" expanded="false" />
+                <element signature="n#!!block;n#GrammerParsing#6" expanded="false" />
+                <element signature="e#4605#4627#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,19 +137,44 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>\[\d+\]</find>
-      <find>::=</find>
+      <find>IntegerLiteral</find>
+      <find>VarRef</find>
+      <find>EQName</find>
+      <find>Expr ::</find>
+      <find>ParenthesizedExpr</find>
+      <find>ContextItemExpr</find>
+      <find>FunctionCall</find>
+      <find>FunctionItemExpr</find>
+      <find>MapConstructor</find>
+      <find>ExprSingle</find>
+      <find>ArrayConstructor</find>
+      <find>KeySpecifier</find>
+      <find>AxisStep</find>
       <find>PredicateList</find>
-      <find>-</find>
-      <find>NewElement</find>
-      <find>createElements</find>
-      <find>’</find>
+      <find>ReverseAxis</find>
+      <find>ReverseStep</find>
+      <find>NodeTest</find>
+      <find>KindTest</find>
+      <find>NameTest</find>
+      <find>BracedURILiteral</find>
+      <find>PathExpr</find>
+      <find>RelativePath</find>
+      <find>PostfixExpr</find>
+      <find>PrimaryExpr</find>
+      <find>Digits</find>
+      <find>name string,</find>
+      <find>name:</find>
+      <find>*NamedToken</find>
+      <find>EscapeQuot</find>
+      <find>*</find>
     </findStrings>
     <replaceStrings>
       <replace>=</replace>
       <replace>s.createElement</replace>
       <replace>createElement</replace>
       <replace>string</replace>
+      <replace>Token</replace>
+      <replace>nameBase:nameBase{</replace>
     </replaceStrings>
   </component>
   <component name="GOROOT" path="C:\Go" />
@@ -93,7 +199,6 @@
         <option value="$PROJECT_DIR$/xpath/Interface.go" />
         <option value="$PROJECT_DIR$/xpath/Query.go" />
         <option value="$PROJECT_DIR$/xpath/xpath.ebnf" />
-        <option value="$PROJECT_DIR$/example/XPath-Next/grammars/xpath-3.1.ebnf" />
         <option value="$PROJECT_DIR$/xpath/xpath-3.1.ebnf" />
         <option value="$PROJECT_DIR$/xpath/Query_test.go" />
         <option value="$PROJECT_DIR$/xpath/Sytax.go" />
@@ -111,6 +216,19 @@
         <option value="$PROJECT_DIR$/svg11/TagBasicShapes.go" />
         <option value="$PROJECT_DIR$/svg11/Tag.go" />
         <option value="$PROJECT_DIR$/svg11/Parser_test.go" />
+        <option value="$PROJECT_DIR$/xpath/comp/Tokens.go" />
+        <option value="$PROJECT_DIR$/xpath/compiler/StreamIO.go" />
+        <option value="$PROJECT_DIR$/example/XPath-Next/grammars/xpath-3.1.ebnf" />
+        <option value="$PROJECT_DIR$/xpath/compiler/Tokens.go" />
+        <option value="$PROJECT_DIR$/ebnf/test.ebnf" />
+        <option value="$PROJECT_DIR$/ebnf/Parser.go" />
+        <option value="$PROJECT_DIR$/ebnf/Grammer.go" />
+        <option value="$PROJECT_DIR$/grammer/Token.go" />
+        <option value="$PROJECT_DIR$/grammer/EBNF.go" />
+        <option value="$PROJECT_DIR$/grammer/Grammer.go" />
+        <option value="$PROJECT_DIR$/grammer/EBNF_test.go" />
+        <option value="$PROJECT_DIR$/grammer/Grammer_test.go" />
+        <option value="$PROJECT_DIR$/grammer/Expression.go" />
       </list>
     </option>
   </component>
@@ -140,6 +258,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -155,20 +275,7 @@
             <path>
               <item name="dom" type="b2602c69:ProjectViewProjectNode" />
               <item name="dom" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="Go-gopher-Vector" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dom" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dom" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="Go-gopher-Vector" type="462c0819:PsiDirectoryNode" />
-              <item name="svg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dom" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dom" type="462c0819:PsiDirectoryNode" />
-              <item name="svg11" type="462c0819:PsiDirectoryNode" />
+              <item name="grammer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dom" type="b2602c69:ProjectViewProjectNode" />
@@ -177,44 +284,25 @@
             <path>
               <item name="dom" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;dom&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
+              <item name="Go SDK 1.9.2" type="20ee2d1f:SyntheticLibraryElementNode" />
             </path>
             <path>
               <item name="dom" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;dom&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
+              <item name="Go SDK 1.9.2" type="20ee2d1f:SyntheticLibraryElementNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dom" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;dom&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
+              <item name="Go SDK 1.9.2" type="20ee2d1f:SyntheticLibraryElementNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="golang.org" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dom" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;dom&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="golang.org" type="462c0819:PsiDirectoryNode" />
-              <item name="x" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dom" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;dom&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="golang.org" type="462c0819:PsiDirectoryNode" />
-              <item name="x" type="462c0819:PsiDirectoryNode" />
-              <item name="exp" type="462c0819:PsiDirectoryNode" />
+              <item name="regexp" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -226,6 +314,7 @@
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="configurable.Module.GOPATH.is.expanded" value="false" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/git/src/github.com/iamGreedy/dom/example/XPath-Next/grammars/xpath-3.1.ebnf" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -244,7 +333,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestParse in Parser_test.go">
+  <component name="RunManager" selected="Go Test.TestEBNFEncoder in EBNF_test.go">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="dom" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -252,6 +341,33 @@
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/" />
       <directory value="$PROJECT_DIR$/" />
+    </configuration>
+    <configuration name="TestEBNFEncoder in EBNF_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true">
+      <module name="dom" />
+      <working_directory value="$PROJECT_DIR$/grammer" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/iamGreedy/dom/grammer" />
+      <pattern value="^TestEBNFEncoder$" />
+    </configuration>
+    <configuration name="TestElemPrefix in Grammer_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true">
+      <module name="dom" />
+      <working_directory value="$PROJECT_DIR$/grammer" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/iamGreedy/dom/grammer" />
+      <pattern value="^TestElemPrefix$" />
+    </configuration>
+    <configuration name="TestElemString_GrammerParsing in Grammer_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true">
+      <module name="dom" />
+      <working_directory value="$PROJECT_DIR$/grammer" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/iamGreedy/dom/grammer" />
+      <pattern value="^TestElemString_GrammerParsing$" />
     </configuration>
     <configuration name="TestParse in Parser_test.go (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true">
       <module name="dom" />
@@ -271,33 +387,6 @@
       <filePath value="$PROJECT_DIR$/svg11/Parser_test.go" />
       <pattern value="^TestParse$" />
     </configuration>
-    <configuration name="TestQ0 in Query_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true">
-      <module name="dom" />
-      <working_directory value="$PROJECT_DIR$/xpath" />
-      <go_parameters value="-i" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/iamGreedy/dom/xpath" />
-      <pattern value="^TestQ0$" />
-    </configuration>
-    <configuration name="TestQ1 in Query_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true">
-      <module name="dom" />
-      <working_directory value="$PROJECT_DIR$/xpath" />
-      <go_parameters value="-i" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/iamGreedy/dom/xpath" />
-      <pattern value="^TestQ1$" />
-    </configuration>
-    <configuration name="TestQ2 in Query_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true">
-      <module name="dom" />
-      <working_directory value="$PROJECT_DIR$/xpath" />
-      <go_parameters value="-i" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/iamGreedy/dom/xpath" />
-      <pattern value="^TestQ2$" />
-    </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
       <module name="dom" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -308,17 +397,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Go Test.TestParse in Parser_test.go" />
       <item index="1" class="java.lang.String" itemvalue="Go Test.TestParse in Parser_test.go (1)" />
-      <item index="2" class="java.lang.String" itemvalue="Go Test.TestQ0 in Query_test.go" />
-      <item index="3" class="java.lang.String" itemvalue="Go Test.TestQ1 in Query_test.go" />
-      <item index="4" class="java.lang.String" itemvalue="Go Test.TestQ2 in Query_test.go" />
+      <item index="2" class="java.lang.String" itemvalue="Go Test.TestElemString_GrammerParsing in Grammer_test.go" />
+      <item index="3" class="java.lang.String" itemvalue="Go Test.TestElemPrefix in Grammer_test.go" />
+      <item index="4" class="java.lang.String" itemvalue="Go Test.TestEBNFEncoder in EBNF_test.go" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Go Test.TestParse in Parser_test.go" />
-        <item index="1" class="java.lang.String" itemvalue="Go Test.TestParse in Parser_test.go (1)" />
-        <item index="2" class="java.lang.String" itemvalue="Go Test.TestQ2 in Query_test.go" />
-        <item index="3" class="java.lang.String" itemvalue="Go Test.TestQ1 in Query_test.go" />
-        <item index="4" class="java.lang.String" itemvalue="Go Test.TestQ0 in Query_test.go" />
+        <item index="0" class="java.lang.String" itemvalue="Go Test.TestEBNFEncoder in EBNF_test.go" />
+        <item index="1" class="java.lang.String" itemvalue="Go Test.TestElemPrefix in Grammer_test.go" />
+        <item index="2" class="java.lang.String" itemvalue="Go Test.TestElemString_GrammerParsing in Grammer_test.go" />
+        <item index="3" class="java.lang.String" itemvalue="Go Test.TestParse in Parser_test.go" />
+        <item index="4" class="java.lang.String" itemvalue="Go Test.TestParse in Parser_test.go (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -326,35 +415,35 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestParse_in_Parser_test_go - 2018.07.17 at 17h 51m 07s.xml">
-      <configuration name="TestParse in Parser_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestEBNFEncoder_in_EBNF_test_go - 2018.07.18 at 17h 28m 39s.xml">
+      <configuration name="TestEBNFEncoder in EBNF_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestParse_in_Parser_test_go - 2018.07.17 at 17h 51m 46s.xml">
-      <configuration name="TestParse in Parser_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestEBNFEncoder_in_EBNF_test_go - 2018.07.18 at 17h 29m 01s.xml">
+      <configuration name="TestEBNFEncoder in EBNF_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestParse_in_Parser_test_go - 2018.07.17 at 17h 52m 10s.xml">
-      <configuration name="TestParse in Parser_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestEBNFEncoder_in_EBNF_test_go - 2018.07.18 at 17h 30m 06s.xml">
+      <configuration name="TestEBNFEncoder in EBNF_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestParse_in_Parser_test_go - 2018.07.17 at 17h 52m 19s.xml">
-      <configuration name="TestParse in Parser_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestElemPrefix_in_Grammer_test_go - 2018.07.18 at 15h 59m 37s.xml">
+      <configuration name="TestElemPrefix in Grammer_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestParse_in_Parser_test_go - 2018.07.17 at 17h 52m 39s.xml">
-      <configuration name="TestParse in Parser_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestElemPrefix_in_Grammer_test_go - 2018.07.18 at 16h 00m 00s.xml">
+      <configuration name="TestElemPrefix in Grammer_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestParse_in_Parser_test_go - 2018.07.17 at 17h 53m 44s.xml">
-      <configuration name="TestParse in Parser_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestElemPrefix_in_Grammer_test_go - 2018.07.18 at 16h 00m 19s.xml">
+      <configuration name="TestElemPrefix in Grammer_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestParse_in_Parser_test_go_(1) - 2018.07.17 at 17h 32m 57s.xml">
-      <configuration name="TestParse in Parser_test.go (1)" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestElemPrefix_in_Grammer_test_go - 2018.07.18 at 16h 00m 28s.xml">
+      <configuration name="TestElemPrefix in Grammer_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestQ2_in_Query_test_go - 2018.07.17 at 14h 36m 25s.xml">
-      <configuration name="TestQ2 in Query_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestElemPrefix_in_Grammer_test_go - 2018.07.18 at 16h 00m 41s.xml">
+      <configuration name="TestElemPrefix in Grammer_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestQ2_in_Query_test_go - 2018.07.17 at 14h 37m 17s.xml">
-      <configuration name="TestQ2 in Query_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestElemPrefix_in_Grammer_test_go - 2018.07.18 at 16h 44m 00s.xml">
+      <configuration name="TestElemPrefix in Grammer_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestQ2_in_Query_test_go - 2018.07.17 at 14h 37m 24s.xml">
-      <configuration name="TestQ2 in Query_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestElemPrefix_in_Grammer_test_go - 2018.07.18 at 16h 55m 57s.xml">
+      <configuration name="TestElemPrefix in Grammer_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -370,14 +459,13 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25266525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23720682" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33695653" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33695653" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46304348" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -387,6 +475,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -402,17 +491,15 @@
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/xpath/syntax/ebnf.go</url>
           <line>27</line>
-          <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://C:/Go/src/reflect/value.go</url>
           <line>1656</line>
-          <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="9" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -423,61 +510,6 @@
     </find-history>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/xpath/Query_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/Context.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/Query.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="45" column="29" lean-forward="false" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Go/src/testing/testing.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13851">
-          <caret line="745" column="0" lean-forward="false" selection-start-line="745" selection-start-column="0" selection-end-line="745" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/util.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="26" lean-forward="false" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/Interface.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitmodules">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/svg11/Parser.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -489,23 +521,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="745" column="0" lean-forward="false" selection-start-line="745" selection-start-column="0" selection-end-line="745" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/xpath.ebnf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1177">
-          <caret line="14" column="59" lean-forward="true" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/xpath/xpath.ebnf" />
     <entry file="file://C:/Go/src/text/scanner/scanner.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1630">
           <caret line="538" column="18" lean-forward="false" selection-start-line="538" selection-start-column="18" selection-end-line="538" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -513,7 +536,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
           <caret line="21" column="23" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -521,7 +543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="264" column="5" lean-forward="false" selection-start-line="264" selection-start-column="5" selection-end-line="264" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -529,7 +550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-570">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -537,7 +557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-105">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -545,7 +564,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="12" column="19" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -553,7 +571,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -561,30 +578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="97" column="8" lean-forward="true" selection-start-line="97" selection-start-column="8" selection-end-line="97" selection-end-column="8" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="n#!!block;n#usage#0" expanded="false" />
-            <element signature="e#576#647#0" expanded="false" />
-            <element signature="n#!!block;n#report#0" expanded="false" />
-            <element signature="n#!!block;n#extractEBNF#0" expanded="false" />
-            <element signature="e#791#1346#0" expanded="false" />
-            <element signature="e#866#911#0" expanded="false" />
-            <element signature="e#932#987#0" expanded="false" />
-            <element signature="e#1074#1127#0" expanded="false" />
-            <element signature="e#1093#1123#0" expanded="false" />
-            <element signature="e#1236#1261#0" expanded="false" />
-            <element signature="n#!!block;n#main#1" expanded="false" />
-            <element signature="e#1401#1440#1" expanded="false" />
-            <element signature="e#1442#1556#0" expanded="false" />
-            <element signature="e#1464#1503#0" expanded="false" />
-            <element signature="e#1505#1533#0" expanded="false" />
-            <element signature="e#1535#1553#0" expanded="false" />
-            <element signature="e#1605#1623#0" expanded="false" />
-            <element signature="e#1693#1785#0" expanded="false" />
-            <element signature="e#1737#1756#0" expanded="false" />
-            <element signature="e#1833#1850#0" expanded="false" />
-            <element signature="e#1917#1946#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -592,103 +585,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-684">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/Query_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="46" column="4" lean-forward="false" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/Context.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/Sytax.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/xpath-3.1.ebnf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/syntax/ebnf.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="31" column="8" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/syntax/doc.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/util.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="42" lean-forward="true" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/Query.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="69" column="32" lean-forward="false" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/Parser.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="13" lean-forward="true" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/XPath-Next/grammars/xpath-3.1.ebnf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="77" column="21" lean-forward="false" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xpath/Interface.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/xpath/Query_test.go" />
+    <entry file="file://$PROJECT_DIR$/xpath/Context.go" />
+    <entry file="file://$PROJECT_DIR$/xpath/Sytax.go" />
+    <entry file="file://$PROJECT_DIR$/xpath/xpath-3.1.ebnf" />
+    <entry file="file://$PROJECT_DIR$/xpath/syntax/ebnf.go" />
+    <entry file="file://$PROJECT_DIR$/xpath/syntax/doc.go" />
+    <entry file="file://$PROJECT_DIR$/xpath/util.go" />
+    <entry file="file://$PROJECT_DIR$/xpath/Query.go" />
+    <entry file="file://$PROJECT_DIR$/xpath/Parser.go" />
+    <entry file="file://$PROJECT_DIR$/xpath/Interface.go" />
     <entry file="file://C:/Go/src/encoding/xml/read.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="139" column="18" lean-forward="false" selection-start-line="139" selection-start-column="18" selection-end-line="139" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -696,7 +609,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="21" column="15" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -704,33 +616,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/svg11/Length.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/svg11/Length.go" />
     <entry file="file://$PROJECT_DIR$/svg11/DataType.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
           <caret line="66" column="18" lean-forward="false" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
-          <folding>
-            <element signature="e#15#95#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/svg11/DocumentStructure.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -738,7 +631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -746,14 +638,64 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/Go-gopher-Vector/svg/gopher01c.svg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/svg11/TagPath.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="35" column="21" lean-forward="true" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/svg11/TagBasicShapes.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="112" column="61" lean-forward="false" selection-start-line="112" selection-start-column="61" selection-end-line="112" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/svg11/TagStruct.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="279" column="70" lean-forward="false" selection-start-line="279" selection-start-column="70" selection-end-line="279" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/reflect/type.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2428">
+          <caret line="36" column="21" lean-forward="true" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/reflect/value.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1690" column="24" lean-forward="false" selection-start-line="1690" selection-start-column="24" selection-end-line="1690" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/svg11/Parser_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding>
+            <element signature="e#15#70#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/svg11/Tag.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="273" column="1" lean-forward="false" selection-start-line="273" selection-start-column="1" selection-end-line="273" selection-end-column="1" />
+        <state relative-caret-position="437">
+          <caret line="227" column="40" lean-forward="false" selection-start-line="227" selection-start-column="40" selection-end-line="227" selection-end-column="40" />
           <folding>
             <element signature="e#103#195#0" expanded="false" />
             <element signature="e#213#259#0" expanded="false" />
@@ -829,281 +771,256 @@
             <element signature="e#5006#5059#0" expanded="false" />
             <element signature="e#5061#5114#0" expanded="false" />
             <element signature="n#!!block;n#createAnimatable#0" expanded="false" />
+            <element signature="e#5181#5405#0" expanded="false" />
+            <element signature="e#5202#5230#0" expanded="false" />
+            <element signature="e#5232#5274#0" expanded="false" />
+            <element signature="e#5276#5319#0" expanded="false" />
+            <element signature="e#5321#5367#0" expanded="false" />
+            <element signature="e#5369#5402#0" expanded="false" />
             <element signature="n#!!block;n#createDescriptive#0" expanded="false" />
+            <element signature="e#5469#5607#0" expanded="false" />
+            <element signature="e#5490#5525#0" expanded="false" />
+            <element signature="e#5527#5565#0" expanded="false" />
+            <element signature="e#5567#5604#0" expanded="false" />
             <element signature="n#!!block;n#createShape#0" expanded="false" />
+            <element signature="e#5665#5970#0" expanded="false" />
+            <element signature="e#5686#5725#0" expanded="false" />
+            <element signature="e#5727#5768#0" expanded="false" />
+            <element signature="e#5770#5805#0" expanded="false" />
+            <element signature="e#5807#5842#0" expanded="false" />
+            <element signature="e#5844#5885#0" expanded="false" />
+            <element signature="e#5887#5930#0" expanded="false" />
+            <element signature="e#5932#5967#0" expanded="false" />
             <element signature="n#!!block;n#createStructural#0" expanded="false" />
+            <element signature="e#6033#6239#0" expanded="false" />
+            <element signature="e#6054#6091#0" expanded="false" />
+            <element signature="e#6093#6126#0" expanded="false" />
+            <element signature="e#6128#6161#0" expanded="false" />
+            <element signature="e#6163#6200#0" expanded="false" />
+            <element signature="e#6202#6236#0" expanded="false" />
             <element signature="n#!!block;n#createGradient#0" expanded="false" />
+            <element signature="e#6300#6416#0" expanded="false" />
+            <element signature="e#6321#6366#0" expanded="false" />
+            <element signature="e#6368#6413#0" expanded="false" />
             <element signature="n#!!block;n#create#0" expanded="false" />
+            <element signature="e#6529#6579#0" expanded="false" />
+            <element signature="e#6559#6576#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/example/Go-gopher-Vector/svg/gopher01c.svg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/svg11/TagPath.go">
+    <entry file="file://$PROJECT_DIR$/svg11/DocumentStructure.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="35" column="21" lean-forward="true" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
-          <folding>
-            <element signature="e#15#47#0" expanded="true" />
-            <element signature="e#292#658#0" expanded="false" />
-            <element signature="n#!!block;n#createElement#0" expanded="false" />
-            <element signature="e#787#802#0" expanded="false" />
-            <element signature="n#!!block;n#UnmarshalXML#0" expanded="false" />
-            <element signature="e#984#1001#0" expanded="false" />
-            <element signature="e#1092#1109#0" expanded="false" />
-            <element signature="e#1193#1210#0" expanded="false" />
-            <element signature="e#1297#1314#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/svg11/TagBasicShapes.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="112" column="61" lean-forward="false" selection-start-line="112" selection-start-column="61" selection-end-line="112" selection-end-column="61" />
-          <folding>
-            <element signature="e#165#265#0" expanded="false" />
-            <element signature="e#276#838#0" expanded="false" />
-            <element signature="e#910#1012#0" expanded="false" />
-            <element signature="e#1025#1428#0" expanded="false" />
-            <element signature="e#1502#1605#0" expanded="false" />
-            <element signature="e#1619#2074#0" expanded="false" />
-            <element signature="e#2142#2242#0" expanded="false" />
-            <element signature="e#2253#2708#0" expanded="false" />
-            <element signature="e#2784#2888#0" expanded="false" />
-            <element signature="e#2903#3209#0" expanded="false" />
-            <element signature="e#3283#3386#0" expanded="false" />
-            <element signature="e#3400#3706#0" expanded="false" />
-            <element signature="n#!!block;n#createElement#0" expanded="false" />
-            <element signature="e#3837#3852#0" expanded="false" />
-            <element signature="n#!!block;n#UnmarshalXML#0" expanded="false" />
-            <element signature="e#4038#4277#0" expanded="false" />
-            <element signature="e#4068#4270#0" expanded="false" />
-            <element signature="e#4144#4270#0" expanded="false" />
-            <element signature="e#4200#4223#0" expanded="false" />
-            <element signature="e#4310#4327#0" expanded="false" />
-            <element signature="e#4404#4421#0" expanded="false" />
-            <element signature="e#4512#4529#0" expanded="false" />
-            <element signature="e#4613#4630#0" expanded="false" />
-            <element signature="e#4708#4725#0" expanded="false" />
-            <element signature="n#!!block;n#createElement#1" expanded="false" />
-            <element signature="e#4911#4926#0" expanded="false" />
-            <element signature="n#!!block;n#UnmarshalXML#1" expanded="false" />
-            <element signature="e#5114#5353#0" expanded="false" />
-            <element signature="e#5144#5346#0" expanded="false" />
-            <element signature="e#5220#5346#0" expanded="false" />
-            <element signature="e#5276#5299#0" expanded="false" />
-            <element signature="e#5386#5403#0" expanded="false" />
-            <element signature="e#5480#5497#0" expanded="false" />
-            <element signature="e#5588#5605#0" expanded="false" />
-            <element signature="e#5689#5706#0" expanded="false" />
-            <element signature="e#5786#5803#0" expanded="false" />
-            <element signature="n#!!block;n#createElement#2" expanded="false" />
-            <element signature="e#5990#6005#0" expanded="false" />
-            <element signature="n#!!block;n#UnmarshalXML#2" expanded="false" />
-            <element signature="e#6194#6433#0" expanded="false" />
-            <element signature="e#6224#6426#0" expanded="false" />
-            <element signature="e#6300#6426#0" expanded="false" />
-            <element signature="e#6356#6379#0" expanded="false" />
-            <element signature="e#6466#6483#0" expanded="false" />
-            <element signature="e#6560#6577#0" expanded="false" />
-            <element signature="e#6668#6685#0" expanded="false" />
-            <element signature="e#6769#6786#0" expanded="false" />
-            <element signature="e#6867#6884#0" expanded="false" />
-            <element signature="n#!!block;n#createElement#3" expanded="false" />
-            <element signature="e#7068#7083#0" expanded="false" />
-            <element signature="n#!!block;n#UnmarshalXML#3" expanded="false" />
-            <element signature="e#7269#7508#0" expanded="false" />
-            <element signature="e#7299#7501#0" expanded="false" />
-            <element signature="e#7375#7501#0" expanded="false" />
-            <element signature="e#7431#7454#0" expanded="false" />
-            <element signature="e#7541#7558#0" expanded="false" />
-            <element signature="e#7635#7652#0" expanded="false" />
-            <element signature="e#7743#7760#0" expanded="false" />
-            <element signature="e#7844#7861#0" expanded="false" />
-            <element signature="e#7939#7956#0" expanded="false" />
-            <element signature="n#!!block;n#createElement#4" expanded="false" />
-            <element signature="e#8144#8159#0" expanded="false" />
-            <element signature="n#!!block;n#UnmarshalXML#4" expanded="false" />
-            <element signature="e#8349#8588#0" expanded="false" />
-            <element signature="e#8379#8581#0" expanded="false" />
-            <element signature="e#8455#8581#0" expanded="false" />
-            <element signature="e#8511#8534#0" expanded="false" />
-            <element signature="e#8621#8638#0" expanded="false" />
-            <element signature="e#8715#8732#0" expanded="false" />
-            <element signature="e#8823#8840#0" expanded="false" />
-            <element signature="e#8924#8941#0" expanded="false" />
-            <element signature="e#9023#9040#0" expanded="false" />
-            <element signature="n#!!block;n#createElement#5" expanded="false" />
-            <element signature="e#9227#9242#0" expanded="false" />
-            <element signature="n#!!block;n#UnmarshalXML#5" expanded="false" />
-            <element signature="e#9431#9670#0" expanded="false" />
-            <element signature="e#9461#9663#0" expanded="false" />
-            <element signature="e#9537#9663#0" expanded="false" />
-            <element signature="e#9593#9616#0" expanded="false" />
-            <element signature="e#9703#9720#0" expanded="false" />
-            <element signature="e#9797#9814#0" expanded="false" />
-            <element signature="e#9905#9922#0" expanded="false" />
-            <element signature="e#10006#10023#0" expanded="false" />
-            <element signature="e#10104#10121#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/svg11/TagStruct.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="279" column="70" lean-forward="false" selection-start-line="279" selection-start-column="70" selection-end-line="279" selection-end-column="70" />
-          <folding>
-            <element signature="e#210#334#0" expanded="false" />
-            <element signature="e#353#1255#0" expanded="false" />
-            <element signature="e#1321#1431#0" expanded="false" />
-            <element signature="e#1452#1703#0" expanded="false" />
-            <element signature="e#1773#1884#0" expanded="false" />
-            <element signature="e#1906#2157#0" expanded="false" />
-            <element signature="e#2241#2292#0" expanded="false" />
-            <element signature="e#2303#2415#0" expanded="false" />
-            <element signature="e#2500#2552#0" expanded="false" />
-            <element signature="e#2564#2676#0" expanded="false" />
-            <element signature="e#2679#2742#0" expanded="false" />
-            <element signature="n#!!block;n#createElement#0" expanded="false" />
-            <element signature="e#3111#3126#0" expanded="false" />
-            <element signature="e#3128#3844#0" expanded="false" />
-            <element signature="e#3149#3180#0" expanded="false" />
-            <element signature="e#3182#3223#0" expanded="false" />
-            <element signature="e#3225#3263#0" expanded="false" />
-            <element signature="e#3265#3308#0" expanded="false" />
-            <element signature="e#3310#3346#0" expanded="false" />
-            <element signature="e#3348#3384#0" expanded="false" />
-            <element signature="e#3386#3420#0" expanded="false" />
-            <element signature="e#3422#3461#0" expanded="false" />
-            <element signature="e#3463#3506#0" expanded="false" />
-            <element signature="e#3508#3543#0" expanded="false" />
-            <element signature="e#3545#3581#0" expanded="false" />
-            <element signature="e#3583#3617#0" expanded="false" />
-            <element signature="e#3619#3656#0" expanded="false" />
-            <element signature="e#3658#3694#0" expanded="false" />
-            <element signature="e#3696#3731#0" expanded="false" />
-            <element signature="e#3733#3769#0" expanded="false" />
-            <element signature="e#3771#3805#0" expanded="false" />
-            <element signature="e#3807#3841#0" expanded="false" />
-            <element signature="n#!!block;n#UnmarshalXML#0" expanded="false" />
-            <element signature="e#4029#4268#0" expanded="false" />
-            <element signature="e#4059#4261#0" expanded="false" />
-            <element signature="e#4135#4261#0" expanded="false" />
-            <element signature="e#4191#4214#0" expanded="false" />
-            <element signature="e#4301#4318#0" expanded="false" />
-            <element signature="e#4395#4412#0" expanded="false" />
-            <element signature="e#4503#4520#0" expanded="false" />
-            <element signature="e#4603#4620#0" expanded="false" />
-            <element signature="e#4704#4721#0" expanded="false" />
-            <element signature="e#4807#4824#0" expanded="false" />
-            <element signature="n#!!block;n#createElement#1" expanded="false" />
-            <element signature="e#5057#5072#0" expanded="false" />
-            <element signature="e#5074#5790#0" expanded="false" />
-            <element signature="e#5095#5126#0" expanded="false" />
-            <element signature="e#5128#5169#0" expanded="false" />
-            <element signature="e#5171#5209#0" expanded="false" />
-            <element signature="e#5211#5254#0" expanded="false" />
-            <element signature="e#5256#5292#0" expanded="false" />
-            <element signature="e#5294#5330#0" expanded="false" />
-            <element signature="e#5332#5366#0" expanded="false" />
-            <element signature="e#5368#5407#0" expanded="false" />
-            <element signature="e#5409#5452#0" expanded="false" />
-            <element signature="e#5454#5489#0" expanded="false" />
-            <element signature="e#5491#5527#0" expanded="false" />
-            <element signature="e#5529#5563#0" expanded="false" />
-            <element signature="e#5565#5602#0" expanded="false" />
-            <element signature="e#5604#5640#0" expanded="false" />
-            <element signature="e#5642#5677#0" expanded="false" />
-            <element signature="e#5679#5715#0" expanded="false" />
-            <element signature="e#5717#5751#0" expanded="false" />
-            <element signature="e#5753#5787#0" expanded="false" />
-            <element signature="n#!!block;n#UnmarshalXML#1" expanded="false" />
-            <element signature="e#5977#6216#0" expanded="false" />
-            <element signature="e#6007#6209#0" expanded="false" />
-            <element signature="e#6083#6209#0" expanded="false" />
-            <element signature="e#6139#6162#0" expanded="false" />
-            <element signature="e#6249#6266#0" expanded="false" />
-            <element signature="e#6343#6360#0" expanded="false" />
-            <element signature="e#6451#6468#0" expanded="false" />
-            <element signature="e#6552#6569#0" expanded="false" />
-            <element signature="e#6657#6674#0" expanded="false" />
-            <element signature="n#!!block;n#createElement#2" expanded="false" />
-            <element signature="e#6907#6922#0" expanded="false" />
-            <element signature="e#6924#7640#0" expanded="false" />
-            <element signature="e#6945#6976#0" expanded="false" />
-            <element signature="e#6978#7019#0" expanded="false" />
-            <element signature="e#7021#7059#0" expanded="false" />
-            <element signature="e#7061#7104#0" expanded="false" />
-            <element signature="e#7106#7142#0" expanded="false" />
-            <element signature="e#7144#7180#0" expanded="false" />
-            <element signature="e#7182#7216#0" expanded="false" />
-            <element signature="e#7218#7257#0" expanded="false" />
-            <element signature="e#7259#7302#0" expanded="false" />
-            <element signature="e#7304#7339#0" expanded="false" />
-            <element signature="e#7341#7377#0" expanded="false" />
-            <element signature="e#7379#7413#0" expanded="false" />
-            <element signature="e#7415#7452#0" expanded="false" />
-            <element signature="e#7454#7490#0" expanded="false" />
-            <element signature="e#7492#7527#0" expanded="false" />
-            <element signature="e#7529#7565#0" expanded="false" />
-            <element signature="e#7567#7601#0" expanded="false" />
-            <element signature="e#7603#7637#0" expanded="false" />
-            <element signature="n#!!block;n#UnmarshalXML#2" expanded="false" />
-            <element signature="e#7828#8067#0" expanded="false" />
-            <element signature="e#7858#8060#0" expanded="false" />
-            <element signature="e#7934#8060#0" expanded="false" />
-            <element signature="e#7990#8013#0" expanded="false" />
-            <element signature="e#8100#8117#0" expanded="false" />
-            <element signature="e#8194#8211#0" expanded="false" />
-            <element signature="e#8302#8319#0" expanded="false" />
-            <element signature="e#8403#8420#0" expanded="false" />
-            <element signature="e#8509#8526#0" expanded="false" />
-            <element signature="n#!!block;n#Parent#0" expanded="false" />
-            <element signature="n#!!block;n#Childrun#0" expanded="false" />
-            <element signature="n#!!block;n#createElement#3" expanded="false" />
-            <element signature="n#!!block;n#UnmarshalXML#3" expanded="false" />
-            <element signature="e#9002#9019#0" expanded="false" />
-            <element signature="e#9097#9114#0" expanded="false" />
-            <element signature="e#9192#9209#0" expanded="false" />
-            <element signature="n#!!block;n#Parent#1" expanded="false" />
-            <element signature="n#!!block;n#Childrun#1" expanded="false" />
-            <element signature="n#!!block;n#createElement#4" expanded="false" />
-            <element signature="n#!!block;n#UnmarshalXML#4" expanded="false" />
-            <element signature="e#9542#9559#0" expanded="false" />
-            <element signature="e#9637#9654#0" expanded="false" />
-            <element signature="e#9733#9750#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Go/src/reflect/type.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2428">
-          <caret line="36" column="21" lean-forward="true" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
+        <state relative-caret-position="171">
+          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Go/src/reflect/value.go">
+    <entry file="file://$PROJECT_DIR$/xpath/compiler/Tokens.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="1690" column="24" lean-forward="false" selection-start-line="1690" selection-start-column="24" selection-end-line="1690" selection-end-column="24" />
+        <state relative-caret-position="447">
+          <caret line="88" column="18" lean-forward="false" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="n#!!block;n#Take#0" expanded="false" />
+            <element signature="e#817#834#0" expanded="false" />
+            <element signature="e#1626#1756#0" expanded="false" />
+            <element signature="e#1643#1692#0" expanded="false" />
+            <element signature="e#1758#1973#0" expanded="false" />
+            <element signature="e#1775#1804#0" expanded="false" />
+            <element signature="e#1975#2480#0" expanded="false" />
+            <element signature="e#2040#2106#0" expanded="false" />
+            <element signature="e#2179#2181#0" expanded="false" />
+            <element signature="e#2490#2504#0" expanded="false" />
+            <element signature="e#2557#2588#0" expanded="false" />
+            <element signature="e#2628#2653#0" expanded="false" />
+            <element signature="e#2709#2740#0" expanded="false" />
+            <element signature="e#2855#2886#0" expanded="false" />
+            <element signature="e#3189#3220#0" expanded="false" />
+            <element signature="e#3466#3475#0" expanded="false" />
+            <element signature="e#3713#3722#0" expanded="false" />
+            <element signature="n#!!block;n#Tokenize#0" expanded="false" />
+            <element signature="e#5665#5682#0" expanded="false" />
+            <element signature="e#5724#5852#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xpath/compiler/StreamIO.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/svg11/Parser_test.go">
+    <entry file="file://$PROJECT_DIR$/ebnf/Parser.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grammer/test.ebnf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/regexp/regexp.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="236" column="5" lean-forward="false" selection-start-line="236" selection-start-column="5" selection-end-line="236" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grammer/Token.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="30" column="48" lean-forward="true" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
+          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding>
-            <element signature="e#15#70#0" expanded="true" />
+            <element signature="e#64#336#0" expanded="false" />
+            <element signature="e#354#416#0" expanded="false" />
+            <element signature="n#!!block;n#Make#0" expanded="false" />
+            <element signature="n#!!block;n#GetName#0" expanded="false" />
+            <element signature="n#!!block;n#SetName#0" expanded="false" />
+            <element signature="n#!!block;n#GetData#0" expanded="false" />
+            <element signature="n#!!block;n#SetData#0" expanded="false" />
+            <element signature="n#!!block;n#GetChildrun#0" expanded="false" />
+            <element signature="n#!!block;n#SetChildrun#0" expanded="false" />
+            <element signature="n#!!block;n#String#0" expanded="false" />
+            <element signature="e#998#1049#0" expanded="false" />
+            <element signature="n#!!block;n#RecursivePrint#0" expanded="false" />
+            <element signature="n#!!block;n#recursivePrint#0" expanded="false" />
+            <element signature="e#1387#1428#0" expanded="false" />
+            <element signature="e#1458#1503#0" expanded="false" />
+            <element signature="n#!!block;n#Make#1" expanded="false" />
+            <element signature="n#!!block;n#GetName#1" expanded="false" />
+            <element signature="n#!!block;n#SetName#1" expanded="false" />
+            <element signature="n#!!block;n#GetData#1" expanded="false" />
+            <element signature="n#!!block;n#SetData#1" expanded="false" />
+            <element signature="n#!!block;n#GetChildrun#1" expanded="false" />
+            <element signature="n#!!block;n#SetChildrun#1" expanded="false" />
+            <element signature="n#!!block;n#String#1" expanded="false" />
+            <element signature="n#!!block;n#RecursivePrint#1" expanded="false" />
+            <element signature="n#!!block;n#recursivePrint#1" expanded="false" />
+            <element signature="e#2408#2449#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../pkg/errors/errors.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="212" column="5" lean-forward="false" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/XPath-Next/grammars/xpath-3.1.ebnf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-907">
+          <caret line="77" column="46" lean-forward="false" selection-start-line="77" selection-start-column="46" selection-end-line="77" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grammer/EBNF.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="13" column="9" lean-forward="false" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+          <folding>
+            <element signature="e#168#193#0" expanded="false" />
+            <element signature="n#!!block;n#NewEBNFEncoder#0" expanded="false" />
+            <element signature="e#259#276#0" expanded="false" />
+            <element signature="n#!!block;n#toExpression#0" expanded="false" />
+            <element signature="e#490#526#0" expanded="false" />
+            <element signature="e#528#613#0" expanded="false" />
+            <element signature="e#615#658#0" expanded="false" />
+            <element signature="e#660#821#0" expanded="false" />
+            <element signature="e#721#768#0" expanded="false" />
+            <element signature="e#823#985#0" expanded="false" />
+            <element signature="e#883#932#0" expanded="false" />
+            <element signature="e#987#1046#0" expanded="false" />
+            <element signature="e#1048#1104#0" expanded="false" />
+            <element signature="n#!!block;n#Encode#0" expanded="false" />
+            <element signature="e#1208#1328#0" expanded="false" />
+            <element signature="e#1306#1325#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grammer/EBNF_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grammer/Grammer_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="52" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grammer/Grammer.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="33" column="68" lean-forward="false" selection-start-line="33" selection-start-column="68" selection-end-line="33" selection-end-column="68" />
+          <folding>
+            <element signature="e#86#124#0" expanded="false" />
+            <element signature="e#155#194#0" expanded="false" />
+            <element signature="n#!!block;n#Build#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grammer/Expression.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="97" column="5" lean-forward="true" selection-start-line="97" selection-start-column="5" selection-end-line="97" selection-end-column="5" />
+          <folding>
+            <element signature="e#73#205#0" expanded="false" />
+            <element signature="e#223#329#0" expanded="false" />
+            <element signature="e#406#431#0" expanded="false" />
+            <element signature="e#479#513#0" expanded="false" />
+            <element signature="e#552#590#0" expanded="false" />
+            <element signature="e#640#706#0" expanded="false" />
+            <element signature="e#763#805#0" expanded="false" />
+            <element signature="e#847#889#0" expanded="false" />
+            <element signature="e#929#966#0" expanded="false" />
+            <element signature="e#1004#1041#0" expanded="false" />
+            <element signature="n#!!block;n#NewExpressionRegexp#0" expanded="false" />
+            <element signature="e#1477#1499#0" expanded="false" />
+            <element signature="e#1525#1596#0" expanded="false" />
+            <element signature="n#!!block;n#MustExpressionRegexp#0" expanded="false" />
+            <element signature="e#1734#1751#0" expanded="false" />
+            <element signature="n#!!block;n#NewExpressionCanbe#0" expanded="false" />
+            <element signature="n#!!block;n#GetName#0" expanded="false" />
+            <element signature="n#!!block;n#GrammerParsing#0" expanded="false" />
+            <element signature="e#2540#2695#0" expanded="false" />
+            <element signature="n#!!block;n#GrammerParsing#1" expanded="false" />
+            <element signature="e#2925#3033#0" expanded="false" />
+            <element signature="n#!!block;n#GrammerParsing#2" expanded="false" />
+            <element signature="e#3254#3333#0" expanded="false" />
+            <element signature="n#!!block;n#GrammerParsing#3" expanded="false" />
+            <element signature="e#3636#3732#0" expanded="false" />
+            <element signature="e#3705#3729#0" expanded="false" />
+            <element signature="n#!!block;n#GrammerParsing#4" expanded="false" />
+            <element signature="e#3959#4098#0" expanded="false" />
+            <element signature="e#4026#4095#0" expanded="false" />
+            <element signature="e#4114#4209#0" expanded="false" />
+            <element signature="n#!!block;n#GrammerParsing#5" expanded="false" />
+            <element signature="n#!!block;n#GrammerParsing#6" expanded="false" />
+            <element signature="e#4605#4627#0" expanded="false" />
           </folding>
         </state>
       </provider>
