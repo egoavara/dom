@@ -50,19 +50,19 @@ func (s *EBNFEncoder) toExpression(expr Expression) string {
 			res += s.toExpression(c)
 			res += " | "
 		}
-		res = res[:len(res) - 1]
+		res = res[:len(res) - 3]
 		res += ")"
 		return res
 	case *ExpressionMultiple:
 		return s.toExpression(e.e)+ "*"
-	case *ExpressionCanbe:
+	case *ExpressionPossible:
 		return s.toExpression(e.e)+ "?"
 	}
 	return ""
 }
 func (s *EBNFEncoder) Encode(grammer *Grammer) error {
 	for k, v := range grammer.gram {
-		_, err := s.dst.Write([]byte(fmt.Sprintf("%s ::= %s", k, s.toExpression(v))))
+		_, err := s.dst.Write([]byte(fmt.Sprintf("%s ::= %s\n", k, s.toExpression(v))))
 		if err != nil {
 			return err
 		}

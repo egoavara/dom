@@ -12,129 +12,133 @@ var (
 )
 
 type Expression interface {
-	GetName() string
 	GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error)
 }
+type HaveInnerExpressions interface {
+	InnerExpressions() []Expression
+}
 type (
-	// common parent class for Implementation of 'Expression'
-	nameBase struct {
-		name string
-	}
-
 	// Reference for expression
 	ExpressionRefer struct {
-		nameBase
-		id string
+		id    string
+		refer Expression
 	}
-
 	// Exact match up
 	ExpressionPrefix struct {
-		nameBase
 		prefix string
 	}
 	// Regular expression matchup
 	ExpressionRegexp struct {
-		nameBase
 		original string
 		re       *regexp.Regexp
 	}
 	// Consecutive matching of 'Expression'
 	ExpressionAnd struct {
-		nameBase
 		cond []Expression
 	}
 	// One 'Expression' match
 	ExpressionOr struct {
-		nameBase
 		cond []Expression
+	}
+	// Except expression
+	ExpressionExcept struct {
+		ori, e Expression
 	}
 	// Multiple match
 	ExpressionMultiple struct {
-		nameBase
 		e Expression
 	}
 	// One or no match
-	ExpressionCanbe struct {
-		nameBase
+	ExpressionPossible struct {
 		e Expression
 	}
 )
 
-func NewExpressionRefer(name string, to string) *ExpressionRefer {
-	return &ExpressionRefer{
-		nameBase: nameBase{name: name},
-		id:       to,
-	}
-}
-func NewExpressionPrefix(name string, prefix string) *ExpressionPrefix {
-	return &ExpressionPrefix{
-		nameBase: nameBase{name: name},
-		prefix:prefix,
-	}
-}
 
-func NewExpressionRegexp(name string, expr string) (*ExpressionRegexp, error) {
+
+func NewExpressionRefer(to string) *ExpressionRefer {
+	return &ExpressionRefer{
+		id: to,
+	}
+}
+func NewExpressionPrefix(prefix string) *ExpressionPrefix {
+	return &ExpressionPrefix{
+
+		prefix: prefix,
+	}
+}
+func NewExpressionRegexp(expr string) (*ExpressionRegexp, error) {
 	r, err := regexp.Compile(expr)
 	if err != nil {
 		return nil, err
 	}
 	return &ExpressionRegexp{
-		nameBase: nameBase{name: name},
+
 		re:       r,
 		original: expr,
 	}, nil
 }
-func MustExpressionRegexp(name string, expr string) *ExpressionRegexp {
-	e, err := NewExpressionRegexp(name, expr)
+func MustExpressionRegexp(expr string) *ExpressionRegexp {
+	e, err := NewExpressionRegexp(expr)
 	if err != nil {
 		panic(err)
 	}
 	return e
 }
-func NewExpressionAnd(name string, e ... Expression) *ExpressionAnd {
+func NewExpressionAnd(e ...Expression) *ExpressionAnd {
 	return &ExpressionAnd{
-		nameBase: nameBase{name: name},
-		cond:e,
+
+		cond: e,
 	}
 }
-func NewExpressionOr(name string, e ... Expression) *ExpressionOr {
+func NewExpressionOr(e ...Expression) *ExpressionOr {
 
 	return &ExpressionOr{
-		nameBase: nameBase{name: name},
-		cond:e,
+
+		cond: e,
 	}
 }
-func NewExpressionMultiple(name string, e Expression) *ExpressionMultiple {
-
+func NewExpressionExcept(ori, e Expression) *ExpressionExcept {
+	return &ExpressionExcept{
+		ori:ori,
+		e: e,
+	}
+}
+func NewExpressionMultiple(e Expression) *ExpressionMultiple {
 	return &ExpressionMultiple{
-		nameBase: nameBase{name: name},
-		e:e,
+
+		e: e,
+	}
+}
+func NewExpressionPossible(e Expression) *ExpressionPossible {
+	return &ExpressionPossible{
+
+		e: e,
 	}
 }
 
-func NewExpressionCanbe(name string, e Expression) *ExpressionCanbe {
-	return &ExpressionCanbe{
-		nameBase: nameBase{name: name},
-		e:e,
+func (s *ExpressionRefer) PreGrammerBuild(g *Grammer) error {
+	if elem, ok := g.gram[s.id]; ok {
+		s.refer = elem
+		return nil
 	}
+	return errors.WithMessage(ErrorNoReference, "there is no name '"+s.id+"'")
 }
 
-
-func (s nameBase) GetName() string {
-	return s.name
-}
+//
 func (s *ExpressionRefer) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
-	if elem, ok := grammer.gram[s.id]; ok {
-		token.SetName(s.name)
-		token.SetData(s.id)
-		token.SetChildrun(token.Make(1)...)
-		return elem.GrammerParsing(grammer, src, token.GetChildrun()[0])
+	if rtk, ok := token.(ReferToken); ok{
+		rtk.Reference(s)
 	}
-	return nil, errors.WithMessage(ErrorNoReference, "there is no name '"+s.id+"'")
+	//token.SetData(s.id)
+	token.SetChildrun(token.Make(1)...)
+	return s.refer.GrammerParsing(grammer, src, token.GetChildrun()[0])
 }
 func (s *ExpressionPrefix) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
 	if bytes.HasPrefix(src, []byte(s.prefix)) {
-		token.SetName(s.name)
+		if rtk, ok := token.(ReferToken); ok{
+			rtk.Reference(s)
+		}
 		token.SetData(s.prefix)
 		return bytes.TrimPrefix(src, []byte(s.prefix)), nil
 	}
@@ -145,12 +149,13 @@ func (s *ExpressionRegexp) GrammerParsing(grammer *Grammer, src []byte, token To
 	if len(res) == 0 {
 		return nil, errors.WithMessage(ErrorGrammaticalDiscrepancy, string(src))
 	}
-	token.SetName(s.name)
+	if rtk, ok := token.(ReferToken); ok{
+		rtk.Reference(s)
+	}
 	token.SetData(string(res))
 	return src[len(res):], nil
 }
 func (s *ExpressionAnd) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
-	token.SetName(s.name)
 	mk := token.Make(len(s.cond))
 	token.SetChildrun(mk...)
 	var err error
@@ -160,17 +165,18 @@ func (s *ExpressionAnd) GrammerParsing(grammer *Grammer, src []byte, token Token
 			return nil, err
 		}
 	}
+	if rtk, ok := token.(ReferToken); ok{
+		rtk.Reference(s)
+	}
 	return src, nil
 }
 func (s *ExpressionOr) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
-	token.SetName(s.name)
 	var err error
 	var tk = token.Make(1)[0]
 	var temp []byte
 	for _, v := range s.cond {
 		temp, err = v.GrammerParsing(grammer, src, tk)
 		if err == nil {
-			token.SetData(v.GetName())
 			token.SetChildrun(tk)
 			break
 		}
@@ -178,21 +184,57 @@ func (s *ExpressionOr) GrammerParsing(grammer *Grammer, src []byte, token Token)
 	if err != nil {
 		return nil, errors.WithMessage(ErrorGrammaticalDiscrepancy, "No matching any condition")
 	}
+	if rtk, ok := token.(ReferToken); ok{
+		rtk.Reference(s)
+	}
 	return temp, nil
 }
-func (s *ExpressionMultiple) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
-	//s.
-	panic("er")
+func (s *ExpressionExcept) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
+	// TODO
+	panic("implement me")
 }
-func (s *ExpressionCanbe) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
-	token.SetName(s.name)
+func (s *ExpressionMultiple) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
+	// TODO
+	panic("implement me")
+}
+func (s *ExpressionPossible) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
+
 	var tk = token.Make(1)[0]
 	var left []byte
 	var err error
 	if left, err = s.e.GrammerParsing(grammer, src, tk); err != nil {
 		return src, nil
 	}
-	token.SetData(s.e.GetName())
+	if rtk, ok := token.(ReferToken); ok{
+		rtk.Reference(s)
+	}
 	token.SetChildrun(tk)
 	return left, nil
+}
+
+
+
+func (s *ExpressionAnd) InnerExpressions() []Expression {
+	return s.cond
+}
+func (s *ExpressionOr) InnerExpressions() []Expression {
+	return s.cond
+}
+func (s *ExpressionExcept) InnerExpressions() []Expression {
+	return []Expression{s.ori, s.e}
+}
+func (s *ExpressionMultiple) InnerExpressions() []Expression {
+	return []Expression{s.e}
+}
+func (s *ExpressionPossible) InnerExpressions() []Expression {
+	return []Expression{s.e}
+}
+
+// common parent class for Implementation of 'Expression'
+type nameBase struct {
+	name string
+}
+
+func (s nameBase) GetName() string {
+	return s.name
 }

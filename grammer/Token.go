@@ -9,8 +9,6 @@ import (
 type Token interface {
 	Make(i int) []Token
 	//
-	GetName() string
-	SetName(name string)
 	GetData() string
 	SetData(data string)
 	GetChildrun() []Token
@@ -20,48 +18,44 @@ type Token interface {
 	RecursivePrint(printer io.Writer)
 	recursivePrint(printer io.Writer, depth int)
 }
+type ReferToken interface {
+	Token
+	Reference(expression Expression)
+}
 
-type NamedToken struct {
-	Name     string
+func NewDefaultToken() Token {
+	return new(DefaultToken)
+}
+type DefaultToken struct {
 	Data     string
 	Childrun []Token
 }
-
-func (s *NamedToken) Make(i int) []Token {
+func (s *DefaultToken) Make(i int) []Token {
 	var temo = make([]Token, i)
 	for i := range temo{
-		temo[i] = new(NamedToken)
+		temo[i] = NewDefaultToken()
 	}
 	return temo
 }
-func (s *NamedToken) GetName() string {
-	return s.Name
-}
-func (s *NamedToken) SetName(name string) {
-	s.Name = name
-}
-func (s *NamedToken) GetData() string {
+func (s *DefaultToken) GetData() string {
 	return s.Data
 }
-func (s *NamedToken) SetData(data string) {
+func (s *DefaultToken) SetData(data string) {
 	s.Data = data
 }
-func (s *NamedToken) GetChildrun() []Token {
+func (s *DefaultToken) GetChildrun() []Token {
 	return s.Childrun
 }
-func (s *NamedToken) SetChildrun(childrun ...Token) {
+func (s *DefaultToken) SetChildrun(childrun ...Token) {
 	s.Childrun = childrun
 }
-func (s *NamedToken) String() string {
-	if len(s.Data) > 0 {
-		return fmt.Sprintf("%s(%s)", s.Name, s.Data)
-	}
-	return fmt.Sprintf("%s", s.Name)
+func (s *DefaultToken) String() string {
+	return fmt.Sprintf("%s", s.Data)
 }
-func (s *NamedToken) RecursivePrint(printer io.Writer) {
+func (s *DefaultToken) RecursivePrint(printer io.Writer) {
 	s.recursivePrint(printer, 0)
 }
-func (s *NamedToken) recursivePrint(printer io.Writer, depth int) {
+func (s *DefaultToken) recursivePrint(printer io.Writer, depth int) {
 	printer.Write([]byte(
 		fmt.Sprintf(
 			"%s%s",
@@ -75,43 +69,44 @@ func (s *NamedToken) recursivePrint(printer io.Writer, depth int) {
 	return
 }
 
-type UnnamedToken struct {
+func NewReferenceToken() Token {
+	return new(ReferenceToken)
+}
+type ReferenceToken struct {
+	Expression Expression
 	Data     string
 	Childrun []Token
 }
 
-func (s *UnnamedToken) Make(i int) []Token {
+func (s *ReferenceToken) Reference(expression Expression) {
+	s.Expression = expression
+}
+func (s *ReferenceToken) Make(i int) []Token {
 	var temo = make([]Token, i)
 	for i := range temo{
-		temo[i] = new(UnnamedToken)
+		temo[i] = NewReferenceToken()
 	}
 	return temo
 }
-func (s *UnnamedToken) GetName() string {
-	return ""
-}
-func (s *UnnamedToken) SetName(name string) {
-
-}
-func (s *UnnamedToken) GetData() string {
+func (s *ReferenceToken) GetData() string {
 	return s.Data
 }
-func (s *UnnamedToken) SetData(data string) {
+func (s *ReferenceToken) SetData(data string) {
 	s.Data = data
 }
-func (s *UnnamedToken) GetChildrun() []Token {
+func (s *ReferenceToken) GetChildrun() []Token {
 	return s.Childrun
 }
-func (s *UnnamedToken) SetChildrun(childrun ...Token) {
+func (s *ReferenceToken) SetChildrun(childrun ...Token) {
 	s.Childrun = childrun
 }
-func (s *UnnamedToken) String() string {
-	return fmt.Sprintf("(%s)", s.Data)
+func (s *ReferenceToken) String() string {
+	return fmt.Sprintf("%s", s.Data)
 }
-func (s *UnnamedToken) RecursivePrint(printer io.Writer) {
+func (s *ReferenceToken) RecursivePrint(printer io.Writer) {
 	s.recursivePrint(printer, 0)
 }
-func (s *UnnamedToken) recursivePrint(printer io.Writer, depth int) {
+func (s *ReferenceToken) recursivePrint(printer io.Writer, depth int) {
 	printer.Write([]byte(
 		fmt.Sprintf(
 			"%s%s",
