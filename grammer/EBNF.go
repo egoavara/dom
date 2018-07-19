@@ -53,6 +53,8 @@ func (s *EBNFEncoder) toExpression(expr Expression) string {
 		res = res[:len(res) - 3]
 		res += ")"
 		return res
+	case *ExpressionExcept:
+		return fmt.Sprintf("%s - %s", s.toExpression(e.ori), s.toExpression(e.e))
 	case *ExpressionMultiple:
 		return s.toExpression(e.e)+ "*"
 	case *ExpressionPossible:

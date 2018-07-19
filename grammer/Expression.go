@@ -4,20 +4,26 @@ import (
 	"bytes"
 	"github.com/pkg/errors"
 	"regexp"
+	"fmt"
 )
 
 var (
 	ErrorGrammaticalDiscrepancy = errors.New("Grammer fail")
 	ErrorNoReference            = errors.New("No matching reference")
+	ErrorException            = errors.New("Exception")
 )
 
 type Expression interface {
 	GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error)
+	fmt.Stringer
 }
 type HaveInnerExpressions interface {
 	InnerExpressions() []Expression
 }
 type (
+	ExpressionBaseToken struct {
+		e Expression
+	}
 	// Reference for expression
 	ExpressionRefer struct {
 		id    string
@@ -54,8 +60,15 @@ type (
 	}
 )
 
+func (s *ExpressionRefer) ID() string {
+	return s.id
+}
 
-
+func NewExpressionBaseToken(e Expression) *ExpressionBaseToken {
+	return &ExpressionBaseToken{
+		e: e,
+	}
+}
 func NewExpressionRefer(to string) *ExpressionRefer {
 	return &ExpressionRefer{
 		id: to,
@@ -68,7 +81,8 @@ func NewExpressionPrefix(prefix string) *ExpressionPrefix {
 	}
 }
 func NewExpressionRegexp(expr string) (*ExpressionRegexp, error) {
-	r, err := regexp.Compile(expr)
+	// must add ^ to front for Startwiths matching
+	r, err := regexp.Compile("^" + expr)
 	if err != nil {
 		return nil, err
 	}
@@ -87,14 +101,11 @@ func MustExpressionRegexp(expr string) *ExpressionRegexp {
 }
 func NewExpressionAnd(e ...Expression) *ExpressionAnd {
 	return &ExpressionAnd{
-
 		cond: e,
 	}
 }
 func NewExpressionOr(e ...Expression) *ExpressionOr {
-
 	return &ExpressionOr{
-
 		cond: e,
 	}
 }
@@ -106,7 +117,6 @@ func NewExpressionExcept(ori, e Expression) *ExpressionExcept {
 }
 func NewExpressionMultiple(e Expression) *ExpressionMultiple {
 	return &ExpressionMultiple{
-
 		e: e,
 	}
 }
@@ -126,11 +136,18 @@ func (s *ExpressionRefer) PreGrammerBuild(g *Grammer) error {
 }
 
 //
+func (s *ExpressionBaseToken) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
+	if rtk, ok := token.(ReferToken); ok{
+		rtk.Reference(s)
+	}
+	token.SetBaseToken()
+	return s.e.GrammerParsing(grammer, src, token.GetChildrun()[0])
+}
 func (s *ExpressionRefer) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
 	if rtk, ok := token.(ReferToken); ok{
 		rtk.Reference(s)
 	}
-	//token.SetData(s.id)
+	//token.AddData(s.id)
 	token.SetChildrun(token.Make(1)...)
 	return s.refer.GrammerParsing(grammer, src, token.GetChildrun()[0])
 }
@@ -139,7 +156,7 @@ func (s *ExpressionPrefix) GrammerParsing(grammer *Grammer, src []byte, token To
 		if rtk, ok := token.(ReferToken); ok{
 			rtk.Reference(s)
 		}
-		token.SetData(s.prefix)
+		token.AddData(s.prefix)
 		return bytes.TrimPrefix(src, []byte(s.prefix)), nil
 	}
 	return nil, errors.WithMessage(ErrorGrammaticalDiscrepancy, string(src))
@@ -152,7 +169,7 @@ func (s *ExpressionRegexp) GrammerParsing(grammer *Grammer, src []byte, token To
 	if rtk, ok := token.(ReferToken); ok{
 		rtk.Reference(s)
 	}
-	token.SetData(string(res))
+	token.AddData(string(res))
 	return src[len(res):], nil
 }
 func (s *ExpressionAnd) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
@@ -160,6 +177,10 @@ func (s *ExpressionAnd) GrammerParsing(grammer *Grammer, src []byte, token Token
 	token.SetChildrun(mk...)
 	var err error
 	for k, v := range s.cond {
+		src = RemoveSpace(src)
+		//if len(temp) == len(src) && k != 0{
+		//	return nil, errors.WithMessage(ErrorGrammaticalDiscrepancy, "And Expression need space for each condition")
+		//}
 		src, err = v.GrammerParsing(grammer, src, mk[k])
 		if err != nil {
 			return nil, err
@@ -190,12 +211,34 @@ func (s *ExpressionOr) GrammerParsing(grammer *Grammer, src []byte, token Token)
 	return temp, nil
 }
 func (s *ExpressionExcept) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
-	// TODO
-	panic("implement me")
+	if _, err := s.e.GrammerParsing(grammer, src, token.Make(1)[0]); err == nil {
+		return nil, errors.WithMessage(ErrorException, string(src))
+	}
+	if rtk, ok := token.(ReferToken); ok{
+		rtk.Reference(s)
+	}
+	tk := token.Make(1)[0]
+	token.SetChildrun(tk)
+	return s.ori.GrammerParsing(grammer, src, tk)
 }
 func (s *ExpressionMultiple) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
-	// TODO
-	panic("implement me")
+	var err error
+	var temp []byte
+	var chr []Token
+	for {
+		var tk = token.Make(1)[0]
+		temp, err = s.e.GrammerParsing(grammer, src, tk)
+		if err != nil {
+			break
+		}
+		src = temp
+		chr = append(chr, tk)
+	}
+	if rtk, ok := token.(ReferToken); ok{
+		rtk.Reference(s)
+	}
+	token.SetChildrun(chr...)
+	return src, nil
 }
 func (s *ExpressionPossible) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
 
@@ -212,6 +255,37 @@ func (s *ExpressionPossible) GrammerParsing(grammer *Grammer, src []byte, token 
 	return left, nil
 }
 
+
+
+
+
+func (s *ExpressionBaseToken) String() string{
+	return fmt.Sprintf("!%s", s.e.String())
+}
+func (s *ExpressionRefer) String() string{
+	return fmt.Sprintf("@%s", s.id)
+}
+func (s *ExpressionPrefix) String() string{
+	return fmt.Sprintf("'%s'", s.prefix)
+}
+func (s *ExpressionRegexp) String() string{
+	return fmt.Sprintf("regex(%s)", s.original)
+}
+func (s *ExpressionAnd) String() string{
+	return "And"
+}
+func (s *ExpressionOr) String() string{
+	return "Or"
+}
+func (s *ExpressionExcept) String() string{
+	return "Except"
+}
+func (s *ExpressionMultiple) String() string{
+	return "Multiple"
+}
+func (s *ExpressionPossible) String() string{
+	return "Possible"
+}
 
 
 func (s *ExpressionAnd) InnerExpressions() []Expression {

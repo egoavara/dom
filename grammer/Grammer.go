@@ -22,12 +22,16 @@ func (s *Grammer ) Tokenize(expr string, src string, tk Token) (Token, error) {
 		if err != nil {
 			return nil, err
 		}
+		left = RemoveSpace(left)
 		if len(left) > 0{
 			return nil, errors.WithMessage(ErrorRemainSrc, string(left))
 		}
 		return tk, nil
 	}
 	return nil, errors.WithMessage(ErrorNoReference, fmt.Sprintf("'%s' is not exist", expr))
+}
+func (s *Grammer ) Get(expr string) Expression {
+	return s.gram[expr]
 }
 type GrammerBuilder struct {
 	cache map[string]Expression
@@ -77,7 +81,10 @@ func recursiveDo(expr Expression, fn func(tk Expression) error) error{
 	}
 	if hiexpr, ok := expr.(HaveInnerExpressions);ok{
 		for _, iexpr := range hiexpr.InnerExpressions() {
-			recursiveDo(iexpr, fn)
+			err := recursiveDo(iexpr, fn)
+			if err != nil {
+				return err
+			}
 		}
 	}
 	return nil
