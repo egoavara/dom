@@ -12,6 +12,9 @@ var GrammerXPath *Grammer
 // shortfnname
 var (
 	base     = NewExpressionBaseToken
+	swc      = NewExpressionSwitch
+	cas      = NewExpressionSwitchCase
+	dft      = NewExpressionSwitchDefault
 	refer    = NewExpressionRefer
 	prefix   = NewExpressionPrefix
 	regex    = MustExpressionRegexp
@@ -78,12 +81,20 @@ func xpathExpr(gb *GrammerBuilder) {
 	))
 
 	// ExprSingle 		::= ForExpr | LetExpr | QuantifiedExpr | IfExpr | OrExpr
-	gb.AddExpression("ExprSingle", or(
-		refer("ForExpr"),
-		refer("LetExpr"),
-		refer("QuantifiedExpr"),
-		refer("IfExpr"),
-		refer("OrExpr"),
+	//gb.AddExpression("ExprSingle", or(
+	//	refer("ForExpr"),
+	//	refer("LetExpr"),
+	//	refer("QuantifiedExpr"),
+	//	refer("IfExpr"),
+	//	refer("OrExpr"),
+	//))
+	gb.AddExpression("ExprSingle", swc(
+		dft(refer("OrExpr")),
+		cas("for", refer("ForExpr")),
+		cas("lef", refer("LetExpr")),
+		cas("some", refer("QuantifiedExpr")),
+		cas("every", refer("QuantifiedExpr")),
+		cas("if", refer("IfExpr")),
 	))
 	// ForExpr
 	forExpr(gb)
@@ -105,20 +116,20 @@ func xpathExpr(gb *GrammerBuilder) {
 }
 func forExpr(gb *GrammerBuilder) {
 	// ForExpr			::= SimpleForClause "return" ExprSingle
-	// SimpleForClause ::= "for" SimpleForBinding ("," SimpleForBinding)*
+	// SimpleForClause 	::= "for" SimpleForBinding ("," SimpleForBinding)*
+	// SimpleForBinding ::= "$" VarName "in" ExprSingle
+	//
+	// #Change for performance
+	// ForExpr			::= SimpleForBinding ("," SimpleForBinding)* "return" ExprSingle
 	// SimpleForBinding ::= "$" VarName "in" ExprSingle
 	gb.AddExpression("ForExpr", and(
-		refer("SimpleForClause"),
-		prefix("return"),
-		refer("ExprSingle"),
-	))
-	gb.AddExpression("SimpleForClause", and(
-		prefix("for"),
 		refer("SimpleForBinding"),
 		multiple(and(
 			prefix(","),
 			refer("SimpleForBinding"),
 		)),
+		prefix("return"),
+		refer("ExprSingle"),
 	))
 	gb.AddExpression("SimpleForBinding", and(
 		prefix("$"),
@@ -131,18 +142,18 @@ func letExpr(gb *GrammerBuilder) {
 	// LetExpr  ::= SimpleLetClause "return" ExprSingle
 	// SimpleLetClause ::= "let" SimpleLetBinding ("," SimpleLetBinding)*
 	// SimpleLetBinding ::= "$" VarName ":=" ExprSingle
+	//
+	// #Change for performance
+	// LetExpr  ::= "let" SimpleLetBinding ("," SimpleLetBinding)* "return" ExprSingle
+	// SimpleLetBinding ::= "$" VarName ":=" ExprSingle
 	gb.AddExpression("LetExpr", and(
-		refer("SimpleLetClause"),
-		prefix("return"),
-		refer("ExprSingle"),
-	))
-	gb.AddExpression("SimpleLetClause", and(
-		prefix("let"),
 		refer("SimpleLetBinding"),
 		multiple(and(
 			prefix(","),
 			refer("SimpleLetBinding"),
 		)),
+		prefix("return"),
+		refer("ExprSingle"),
 	))
 	gb.AddExpression("SimpleLetBinding", and(
 		prefix("$"),
@@ -153,11 +164,10 @@ func letExpr(gb *GrammerBuilder) {
 }
 func quantifiedExpr(gb *GrammerBuilder) {
 	// QuantifiedExpr ::= ("some" | "every") "$" VarName "in" ExprSingle ("," "$" VarName "in" ExprSingle)* "satisfies" ExprSingle
+	//
+	// #Change for performance
+	// QuantifiedExpr ::= "$" VarName "in" ExprSingle ("," "$" VarName "in" ExprSingle)* "satisfies" ExprSingle
 	gb.AddExpression("QuantifiedExpr", and(
-		or(
-			prefix("some"),
-			prefix("every"),
-		),
 		prefix("$"),
 		refer("VarName"),
 		prefix("in"),
@@ -175,8 +185,10 @@ func quantifiedExpr(gb *GrammerBuilder) {
 }
 func ifExpr(gb *GrammerBuilder) {
 	// IfExpr   ::= "if" "(" Expr ")" "then" ExprSingle "else" ExprSingle
+	//
+	// #Change for performance
+	// IfExpr   ::= "(" Expr ")" "then" ExprSingle "else" ExprSingle
 	gb.AddExpression("IfExpr", and(
-		prefix("if"),
 		prefix("("),
 		refer("Expr"),
 		prefix(")"),
@@ -332,6 +344,16 @@ func orExpr(gb *GrammerBuilder) {
 	))
 	// ValueExpr ::= SimpleMapExpr
 	gb.AddExpression("ValueExpr", refer("SimpleMapExpr"))
+	// SimpleMapExpr ::= PathExpr ("!" PathExpr)*
+	gb.AddExpression("SimpleMapExpr", and(
+		refer("PathExpr"),
+		multiple(and(
+			prefix("!"),
+			refer("PathExpr"),
+		)),
+	))
+
+
 	// GeneralComp ::= "=" | "!=" | "<" | "<=" | ">" | ">="
 	gb.AddExpression("GeneralComp", or(
 		prefix("="),
@@ -355,14 +377,6 @@ func orExpr(gb *GrammerBuilder) {
 		prefix("is"),
 		prefix("<<"),
 		prefix(">>"),
-	))
-	// SimpleMapExpr ::= PathExpr ("!" PathExpr)*
-	gb.AddExpression("SimpleMapExpr", and(
-		refer("PathExpr"),
-		multiple(and(
-			prefix("!"),
-			refer("PathExpr"),
-		)),
 	))
 	pathExpr(gb)
 }
@@ -391,9 +405,12 @@ func pathExpr(gb *GrammerBuilder) {
 		)),
 	))
 	// StepExpr ::= PostfixExpr | AxisStep
+	//
+	// #Change because .. can't be parse cause PostfixExpr->PrimaryExpr->ContextItemExpr Have . so return .~~~
+	// StepExpr ::= AxisStep | PostfixExpr
 	gb.AddExpression("StepExpr", or(
-		refer("PostfixExpr"),
 		refer("AxisStep"),
+		refer("PostfixExpr"),
 	))
 	// AxisStep ::= (ReverseStep | ForwardStep) PredicateList
 	gb.AddExpression("AxisStep", and(
@@ -937,50 +954,44 @@ func advanceType(gb *GrammerBuilder) {
 }
 func basicTypes(gb *GrammerBuilder) {
 	// IntegerLiteral 		::= Digits
-	gb.AddExpression("IntegerLiteral", refer("Digits"))
+	gb.AddExpression("IntegerLiteral", base(refer("Digits")))
 	// DecimalLiteral 		::= ("." Digits) | (Digits "." [0-9]*) /* ws: explicit */
-	gb.AddExpression("DecimalLiteral",
-		or(
-			and(prefix("."), refer("Digits")),
-			and(refer("Digits"), prefix("."), regex(`[0-9]*`)),
-		),
-	)
+	gb.AddExpression("DecimalLiteral", base(or(
+		and(prefix("."), refer("Digits")),
+		and(refer("Digits"), prefix("."), regex(`[0-9]*`)),
+	)))
 	// DoubleLiteral 		::= (("." Digits) | (Digits ("." [0-9]*)?)) [eE] [+-]? Digits /* ws: explicit */
-	gb.AddExpression("DoubleLiteral",
-		and(
-			or(
-				and(
-					prefix("."),
-					refer("Digits")),
-				and(
-					refer("Digits"),
-					possible(
-						and(
-							prefix("."),
-							regex(`[0-9]*`)),
-					),
+	gb.AddExpression("DoubleLiteral", base(and(
+		or(
+			and(
+				prefix("."),
+				refer("Digits")),
+			and(
+				refer("Digits"),
+				possible(
+					and(
+						prefix("."),
+						regex(`[0-9]*`)),
 				),
 			),
-			regex(`[eE]`),
-			regex(`[+-]?`),
-			refer("Digits"),
 		),
-	)
+		regex(`[eE]`),
+		regex(`[+-]?`),
+		refer("Digits"),
+	)))
 	// StringLiteral 		::= ('"' (EscapeQuot | [^"])* '"') | ("'" (EscapeApos | [^'])* "'") /* ws: explicit */
-	gb.AddExpression("StringLiteral",
-		or(
-			and(
-				prefix(`"`),
-				multiple(or(refer("EscapeQuot"), regex(`[^"]`))),
-				prefix(`"`),
-			),
-			and(
-				prefix(`'`),
-				multiple(or(refer("EscapeApos"), regex(`[^']`))),
-				prefix(`'`),
-			),
+	gb.AddExpression("StringLiteral", base(or(
+		and(
+			prefix(`"`),
+			multiple(or(refer("EscapeQuot"), regex(`[^"]`))),
+			prefix(`"`),
 		),
-	)
+		and(
+			prefix(`'`),
+			multiple(or(refer("EscapeApos"), regex(`[^']`))),
+			prefix(`'`),
+		),
+	)))
 	// URIQualifiedName  	::= BracedURILiteral NCName /* ws: explicit */
 	gb.AddExpression("URIQualifiedName",
 		and(

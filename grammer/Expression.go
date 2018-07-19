@@ -13,6 +13,11 @@ var (
 	ErrorException            = errors.New("Exception")
 )
 
+// TODO : OR Improvment
+// Or have limit, if there are a, b, c  condition and if some text fulfill a but also b, however refer meed b mot a.
+// in this case or already return a so it can't return b case
+
+
 type Expression interface {
 	GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error)
 	fmt.Stringer
@@ -24,6 +29,11 @@ type (
 	ExpressionBaseToken struct {
 		e Expression
 	}
+	//
+	ExpressionSwitch struct {
+		cases []SCase
+		def *SCase
+	}
 	// Reference for expression
 	ExpressionRefer struct {
 		id    string
@@ -31,7 +41,7 @@ type (
 	}
 	// Exact match up
 	ExpressionPrefix struct {
-		prefix string
+		prefix []byte
 	}
 	// Regular expression matchup
 	ExpressionRegexp struct {
@@ -60,6 +70,7 @@ type (
 	}
 )
 
+
 func (s *ExpressionRefer) ID() string {
 	return s.id
 }
@@ -67,6 +78,29 @@ func (s *ExpressionRefer) ID() string {
 func NewExpressionBaseToken(e Expression) *ExpressionBaseToken {
 	return &ExpressionBaseToken{
 		e: e,
+	}
+}
+type SCase struct {
+	v []byte
+	to Expression
+}
+func NewExpressionSwitch(defaultCase *SCase, cases ... SCase) *ExpressionSwitch {
+	res := &ExpressionSwitch{
+		cases:cases,
+		def: defaultCase,
+	}
+	return res
+}
+func NewExpressionSwitchCase(ifstartwith string, to Expression) SCase {
+	return SCase{
+		v:[]byte(ifstartwith),
+		to:to,
+	}
+}
+func NewExpressionSwitchDefault(to Expression) *SCase {
+	return &SCase{
+		v:nil,
+		to:to,
 	}
 }
 func NewExpressionRefer(to string) *ExpressionRefer {
@@ -77,7 +111,7 @@ func NewExpressionRefer(to string) *ExpressionRefer {
 func NewExpressionPrefix(prefix string) *ExpressionPrefix {
 	return &ExpressionPrefix{
 
-		prefix: prefix,
+		prefix: []byte(prefix),
 	}
 }
 func NewExpressionRegexp(expr string) (*ExpressionRegexp, error) {
@@ -134,20 +168,48 @@ func (s *ExpressionRefer) PreGrammerBuild(g *Grammer) error {
 	}
 	return errors.WithMessage(ErrorNoReference, "there is no name '"+s.id+"'")
 }
-
 //
 func (s *ExpressionBaseToken) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
 	if rtk, ok := token.(ReferToken); ok{
 		rtk.Reference(s)
 	}
-	token.SetBaseToken()
-	return s.e.GrammerParsing(grammer, src, token.GetChildrun()[0])
+	var err error
+	var tk = token.Make(1)[0]
+	token.SetChildrun(tk)
+	//
+	src, err = s.e.GrammerParsing(grammer, src, tk)
+	//
+	token.SetData(token.Total())
+	token.SetChildrun()
+	return src, err
+}
+func (s *ExpressionSwitch) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
+	for _, c := range s.cases{
+		if bytes.HasPrefix(src, c.v) {
+			tk := token.Make(1)[0]
+			if rtk, ok := token.(ReferToken); ok{
+				rtk.Reference(s)
+			}
+			token.SetData(string(c.v))
+			token.SetChildrun(tk)
+			return s.def.to.GrammerParsing(grammer, src[len(c.v):], tk)
+		}
+	}
+	if s.def != nil{
+		tk := token.Make(1)[0]
+		if rtk, ok := token.(ReferToken); ok{
+			rtk.Reference(s)
+		}
+		token.SetChildrun(tk)
+		return s.def.to.GrammerParsing(grammer, src, tk)
+	}
+	return nil, errors.WithMessage(ErrorGrammaticalDiscrepancy, "No matching any condition")
 }
 func (s *ExpressionRefer) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
 	if rtk, ok := token.(ReferToken); ok{
 		rtk.Reference(s)
 	}
-	//token.AddData(s.id)
+	//token.SetData(s.id)
 	token.SetChildrun(token.Make(1)...)
 	return s.refer.GrammerParsing(grammer, src, token.GetChildrun()[0])
 }
@@ -156,8 +218,8 @@ func (s *ExpressionPrefix) GrammerParsing(grammer *Grammer, src []byte, token To
 		if rtk, ok := token.(ReferToken); ok{
 			rtk.Reference(s)
 		}
-		token.AddData(s.prefix)
-		return bytes.TrimPrefix(src, []byte(s.prefix)), nil
+		token.SetData(string(s.prefix))
+		return src[len(s.prefix):], nil
 	}
 	return nil, errors.WithMessage(ErrorGrammaticalDiscrepancy, string(src))
 }
@@ -169,7 +231,7 @@ func (s *ExpressionRegexp) GrammerParsing(grammer *Grammer, src []byte, token To
 	if rtk, ok := token.(ReferToken); ok{
 		rtk.Reference(s)
 	}
-	token.AddData(string(res))
+	token.SetData(string(res))
 	return src[len(res):], nil
 }
 func (s *ExpressionAnd) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
@@ -178,7 +240,7 @@ func (s *ExpressionAnd) GrammerParsing(grammer *Grammer, src []byte, token Token
 	var err error
 	for k, v := range s.cond {
 		src = RemoveSpace(src)
-		//if len(temp) == len(src) && k != 0{
+		//if len(chanresult) == len(src) && k != 0{
 		//	return nil, errors.WithMessage(ErrorGrammaticalDiscrepancy, "And Expression need space for each condition")
 		//}
 		src, err = v.GrammerParsing(grammer, src, mk[k])
@@ -194,9 +256,10 @@ func (s *ExpressionAnd) GrammerParsing(grammer *Grammer, src []byte, token Token
 func (s *ExpressionOr) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
 	var err error
 	var tk = token.Make(1)[0]
-	var temp []byte
+	var chanresult []byte
+
 	for _, v := range s.cond {
-		temp, err = v.GrammerParsing(grammer, src, tk)
+		chanresult, err = v.GrammerParsing(grammer, src, tk)
 		if err == nil {
 			token.SetChildrun(tk)
 			break
@@ -208,7 +271,7 @@ func (s *ExpressionOr) GrammerParsing(grammer *Grammer, src []byte, token Token)
 	if rtk, ok := token.(ReferToken); ok{
 		rtk.Reference(s)
 	}
-	return temp, nil
+	return chanresult, nil
 }
 func (s *ExpressionExcept) GrammerParsing(grammer *Grammer, src []byte, token Token) ([]byte, error) {
 	if _, err := s.e.GrammerParsing(grammer, src, token.Make(1)[0]); err == nil {
@@ -262,6 +325,9 @@ func (s *ExpressionPossible) GrammerParsing(grammer *Grammer, src []byte, token 
 func (s *ExpressionBaseToken) String() string{
 	return fmt.Sprintf("!%s", s.e.String())
 }
+func (s *ExpressionSwitch) String() string{
+	return "switch"
+}
 func (s *ExpressionRefer) String() string{
 	return fmt.Sprintf("@%s", s.id)
 }
@@ -288,6 +354,24 @@ func (s *ExpressionPossible) String() string{
 }
 
 
+func (s *ExpressionBaseToken) InnerExpressions() []Expression {
+	return []Expression{s.e}
+}
+func (s *ExpressionSwitch) InnerExpressions() (res []Expression) {
+	if s.def == nil{
+		res = make([]Expression, len(s.cases))
+		for i, c := range s.cases {
+			res[i] = c.to
+		}
+	}else {
+		res = make([]Expression, len(s.cases) + 1)
+		for i, c := range s.cases {
+			res[i] = c.to
+		}
+		res[len(s.cases)] = s.def.to
+	}
+	return
+}
 func (s *ExpressionAnd) InnerExpressions() []Expression {
 	return s.cond
 }
