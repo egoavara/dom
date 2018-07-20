@@ -1,6 +1,7 @@
 package presentation
 
 type Key string
+
 const (
 	AlignmentBaseline          Key = "alignment-baseline"
 	BaselineShift              Key = "baseline-shift"
@@ -62,3 +63,65 @@ const (
 	WordSpacing                Key = "word-spacing"
 	WritingMode                Key = "writing-mode"
 )
+
+var Order = []Key{
+	AlignmentBaseline,
+	BaselineShift,
+	Clip,
+	ClipPath,
+	ClipRule,
+	Color,
+	ColorInterpolation,
+	ColorInterpolationFilters,
+	ColorProfile,
+	ColorRendering,
+	Cursor,
+	Direction,
+	Display,
+	DominantBaseline,
+	EnableBackground,
+	Fill,
+	FillOpacity,
+	FillRule,
+	Filter,
+	FloodColor,
+	FloodOpacity,
+	FontFamily,
+	FontSize,
+	FontSizeAdjust,
+	FontStretch,
+	FontStyle,
+	FontVariant,
+	FontWeight,
+	GlyphOrientationHorizontal,
+	GlyphOrientationVertical,
+	ImageRendering,
+	Kerning,
+	LetterSpacing,
+	LightingColor,
+	MarkerEnd,
+	MarkerMid,
+	MarkerStart,
+	Mask,
+	Opacity,
+	Overflow,
+	PointerEvents,
+	ShapeRendering,
+	StopColor,
+	StopOpacity,
+	Stroke,
+	StrokeDasharray,
+	StrokeDashoffset,
+	StrokeLinecap,
+	StrokeLinejoin,
+	StrokeMiterlimit,
+	StrokeOpacity,
+	StrokeWidth,
+	TextAnchor,
+	TextDecoration,
+	TextRendering,
+	UnicodeBidi,
+	Visibility,
+	WordSpacing,
+	WritingMode,
+}

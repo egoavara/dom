@@ -5,15 +5,17 @@ import (
 	"io"
 )
 
-func Parse(reader io.Reader) (root *ElemSVG, err error) {
-	root = new(ElemSVG)
+func Parse(reader io.Reader) (doc *Document, err error) {
+	doc = new(Document)
+	doc.Root = new(ElemSVG)
+
 	//
 	dec := xml.NewDecoder(reader)
 	//
-	err = dec.Decode(root)
+	err = dec.Decode(doc.Root)
 	if err != io.EOF && err != nil {
 		return nil, err
 	}
 	//
-	return root, nil
+	return doc, nil
 }

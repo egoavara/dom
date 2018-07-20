@@ -3,6 +3,7 @@ package svg11
 import (
 	"encoding/xml"
 	"github.com/iamGreedy/dom/svg11/presentation"
+	"fmt"
 )
 
 type Element interface {
@@ -24,7 +25,7 @@ func (s *commonTree) Childrun() []Element {
 }
 
 type Core struct {
-	ID    string `xml:"id,attr"`
+	ID    *Name `xml:"id,attr"`
 	Base  string `xml:"base,attr"`
 	Lang  string `xml:"lang,attr"`
 	Space string `xml:"space,attr"`
@@ -56,6 +57,16 @@ type GraphicalEvent struct {
 }
 type Presentation map[presentation.Key]interface{}
 
+func (s *Presentation) alignedarglist(b *FuncStyle, keys ...presentation.Key) {
+	if len(keys) == 0{
+		keys = presentation.Order
+	}
+	for _, v := range keys {
+		if val, ok := (*s)[v];ok {
+			b.Map(string(v), fmt.Sprint(val))
+		}
+	}
+}
 
 
 func (s *Presentation) xmlAttrs(attrs ...xml.Attr) (err error) {
@@ -280,3 +291,5 @@ func create(name xml.Name, fns ... func(name xml.Name) Element) Element {
 	}
 	return nil
 }
+
+

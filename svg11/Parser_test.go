@@ -5,7 +5,6 @@ import (
 	"os"
 	"io"
 	"strings"
-	"reflect"
 )
 
 func TestParse(t *testing.T) {
@@ -16,19 +15,18 @@ func TestParse(t *testing.T) {
 	}
 	defer f.Close()
 	//
-	root, err := Parse(f)
+	doc, err := Parse(f)
 	if err != io.EOF && err != nil {
 		t.Error(err)
 		return
 	}
 
 
-	Recur(t, root, 0)
+	Recur(t, doc.Root, 0)
 }
 func Recur(t *testing.T, element Element, depth int){
-	v := reflect.ValueOf(element)
-	tp := v.Type()
-	t.Log(strings.Repeat("    ", depth),":", tp)
+
+	t.Log(strings.Repeat("    ", depth),":", element)
 	for _, child := range element.Childrun() {
 		Recur(t, child, depth + 1)
 	}

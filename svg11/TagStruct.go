@@ -214,6 +214,33 @@ func (s *ElemSVG) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 
 	return nil
 }
+func (s *ElemSVG) String() string {
+
+	res := NewFuncStyle("svg")
+	if s.Core.ID != nil {
+		res.Map("id", s.Core.ID.String())
+	}
+	if len(s.Version) > 0 {
+		res.Map("version", s.Version)
+	}
+	if s.X.Value != 0 {
+		res.Map("x", s.X.String())
+	}
+	if s.Y.Value != 0 {
+		res.Map("y", s.Y.String())
+	}
+	if s.Width.Value != 0 {
+		res.Map("width", s.Width.String())
+	}
+	if s.Height.Value != 0 {
+		res.Map("height", s.Height.String())
+	}
+	if len(s.ViewBox) > 0 {
+		res.Map("viewBox", s.ViewBox)
+	}
+	s.Presentation.alignedarglist(res)
+	return res.Build()
+}
 
 func (s *ElemGroup) createElement(name xml.Name) Element {
 	if e := create(name, createAnimatable, createDescriptive, createShape, createStructural, createGradient); e != nil {
